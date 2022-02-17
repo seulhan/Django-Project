@@ -1,0 +1,122 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %} 메인화면 {% endblock %}</title>
+</head>
+<!-- Editor's Pick -->
+{% block content %}
+<main>
+	<div class="main-main">
+	<section class = "ep">
+	<br>
+		<span class = "title" style = "cursor:default">&nbsp;&nbsp;&nbsp;&nbsp;Editor's Pick</span>
+		&nbsp;
+		<input class = "mbtn_select" type = "button" id = "mainlist1" value = "1" style = "cursor:pointer" onclick = "main_click_list1()">
+		<input class = "mbtn" type = "button" id = "mainlist2" value = "2" style = "cursor:pointer" onclick = "main_click_list2()">
+		<input class = "mbtn" type = "button" id = "mainlist3" value = "3" style = "cursor:pointer" onclick = "main_click_list3()">
+		<input class = "mbtn" type = "button" id = "mainlist4" value = "4" style = "cursor:pointer" onclick = "main_click_list4()">
+	<br>
+	<!-- 발라드 -->
+	<ul class = "ballad" style = "display:block;">
+	<br>
+	<th><input class="msg" value = "밖은 추우니까 귓가는 따뜻하게 발라드" onclick="location='allgenre?genre=ballad'"></th>
+	<br>
+	<br>
+		{% for post in posts_ballad %}
+		<figure class = "album">
+				<a class="m_a" href="musicdetail?num={{post.num}}">
+				<br>
+				<div class = "maintitle" style ="color:white;font-weight:bold;">{{post.title}}</div>
+				<br>
+				<div class = "mainsinger" style ="color:#D5D5D5;font-weight:bold;">{{post.singer}}</div>
+				</a>
+		</figure>
+		{% endfor %}
+	</ul>
+	
+		<!-- 댄스 -->
+	<ul class = "dance" style = "display:none;">
+	<br>
+	<th><input class="msg" value = "1시간 운동 끝내는 댄스" onclick="location='allgenre?genre=dance'"></th>
+	<br>
+	<br>
+		{% for post in posts_dance %}
+		<figure class = "album">
+				<a class="m_a" href="musicdetail?num={{post.num}}">
+				<br>
+				<div class = "maintitle" style ="color:white;font-weight:bold;">{{post.title}}</div>
+				<br>
+				<div class = "mainsinger" style ="color:#D5D5D5;font-weight:bold;">{{post.singer}}</div>
+				</a>
+		</figure>
+		{% endfor %}
+	</ul>	
+
+		<!-- 랩/힙합 -->
+	<ul class = "rap" style = "display:none;">
+	<br>
+	<th><input class="msg" value = "힙한 카페에서 플레이되는 힙합" onclick="location='allgenre?genre=rap'"></th>
+	<br>
+	<br>
+		{% for post in posts_rap %}
+		<figure class = "album">
+				<a class="m_a" href="musicdetail?num={{post.num}}">
+				<br>
+				<div class = "maintitle" style ="color:white;font-weight:bold;">{{post.title}}</div>
+				<br>
+				<div class = "mainsinger" style ="color:#D5D5D5;font-weight:bold;">{{post.singer}}</div>
+				</a>
+		</figure>
+		{% endfor %}
+	</ul>
+	
+	<!-- 알앤비 -->
+	<ul class = "rnb" style = "display:none;">
+	<br>
+	<th><input class="msg" value = "출근할 때 챙겨 듣는 알앤비" onclick="location='allgenre?genre=rnb'"></th>
+	<br>
+	<br>
+		{% for post in posts_rnb %}
+		<figure class = "album">
+				<a class="m_a" href="musicdetail?num={{post.num}}">
+				<br>
+				<div class = "maintitle" style ="color:white;font-weight:bold;">{{post.title}}</div>
+				<br>
+				<div class = "mainsinger" style ="color:#D5D5D5;font-weight:bold;">{{post.singer}}</div>
+				</a>
+		</figure>
+		{% endfor %}
+	</ul>
+			
+	</section>
+		
+		<div class="collection">
+		<br>
+		&nbsp;&nbsp;&nbsp;<b>장르 콜렉션</b>
+		<br>
+		<br>
+			<figure class="genre">
+				<a href = "/jypprj/allgenre?genre=ballad">
+				<img src="{% static 'ballad.PNG' %}" width=200, height=200></a>
+			</figure>
+			<figure class="genre">
+				<a href = "/jypprj/allgenre?genre=dance">
+				<img src="{% static 'dance.PNG' %}" width=200, height=200>
+			</figure>
+			<figure class="genre">
+				<a href = "/jypprj/allgenre?genre=rap">
+				<img src="{% static 'rap.PNG' %}" width=200, height=200>
+			</figure>
+			<figure class="genre">
+				<a href = "/jypprj/allgenre?genre=rnb">
+				<img src="{% static 'rnb.PNG' %}" width=200, height=200>
+			</figure>
+		</div>
+	</div>
+</main>
+{% endblock %}
+
+</html>

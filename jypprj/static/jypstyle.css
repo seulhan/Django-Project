@@ -1,0 +1,590 @@
+@charset "UTF-8";
+
+/*mainpage(ep쪽은 search로)*/
+.main-main {
+   width : 1080px;
+   margin : auto;
+   display : grid;
+   grid-template-columns : 1000px;
+   grid-template-rows : 450px 300px;
+   gap : 100px;
+}
+.album {
+   float : left;
+   font-size : 14px;
+   width : 160px;
+   margin-bottom : 20px;
+   height : 100px;
+}
+
+.ep {
+   background : #00A2C9;
+}
+
+.collection {
+   background : white;
+   text-align : left;
+   border : none;
+   font-size : 25px;
+}
+
+.msg {
+   background : #00A2C9;
+   border : none;
+   width : 500px;
+   font-size : 25px;
+   font-weight: bold;
+   color : white;
+}
+
+.maintitle {
+   font-size : 18px;
+   width : 130px;
+   white-space : nowrap;
+   overflow : hidden;
+   text-overflow : ellipsis;
+}
+
+.mainsinger {
+   font-size : 17px;
+   width : 130px;
+   white-space : nowrap;
+   overflow : hidden;
+   text-overflow : ellipsis;
+}
+
+.genre {
+   float : left;
+   font-size : 14px;
+   width : 170px;
+}
+
+.mbtn {
+   font-size:18px;
+   color: #757271; 
+   border : none;
+}
+
+.mbtn :hover {
+   font-size:18px;
+   color: #757271;
+   font-weight: bold; 
+   border : none;
+}
+
+
+.mbtn_select {
+   font-size:18px;
+   font-weight: bold;
+   border : none;
+   border-bottom : 2px solid #00BFFF;
+   color: #757271; 
+}
+
+.m_a {
+   text-decoration : none;
+}
+
+/*mainpage 끝*/
+
+
+/*--------------------------------------*/
+/*--------------------------------------*/
+/*sidebar*/
+.main {
+	padding : 55px 100px 100px 100px;
+}
+
+.topbar {
+	height : 150px;
+	width : 100%;
+	z-index : 1;
+	top : 0;
+	left : 0;
+	background-color: rgb(255, 255, 255);
+	overflow-x : hidden;
+	padding-top : 0px;
+}
+
+.toptxt {
+	text-decoration : none;
+	font-size : 20px;
+	font-weight : bold;
+	font-family : sans-serif;
+	color : rgb(93, 93, 93);
+}
+
+.input_search {
+	background-color: rgb(255, 255, 255);
+	border: 1px solid #818181;
+	border-radius: 25px;
+	margin: auto;
+	padding-left : 10px;
+	width: 400px;
+	height : 35px;
+	font-size : 16px;
+	position : relative;
+	left : 0px;
+	top : 0px;	
+}
+/*sidebar 끝*/
+
+/*--------------------------------------*/
+/*allgenre*/
+.musicchart {
+	padding : 10px 10px 10px 10px;
+	min-width:700px;
+}
+
+#musicchart_list td, #musicchart_list th {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 12px;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.rank :hover {
+	background-color : #E0EDF8;
+}
+
+.title {		
+	font-size : 20px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+.btn {
+	font-size:15px;
+	font-family : sans-serif;
+	border : None;
+	margin-right: -6px;
+	background-color: #fafafa;
+	border-bottom : 1px solid #e1e1e1;
+	border-top : 1px solid #eaeaea;
+	width:140px;
+	height: 50px;
+}
+
+.btn_select {
+	font-size:15px;
+	font-family : sans-serif;
+	color : #00BFFF;
+	font-weight: bold;
+	border : None;
+	padding : None;
+	background-color: #ffffff;
+	border-top : 1px solid #eaeaea;
+	width:140px;
+	height: 50px;
+}
+
+.pagenum a {
+    display: inline-block;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #fff;
+    line-height: 16px;
+    min-width: 14px;
+    margin: 0 10px;
+    color: #606060;
+    font-size: 20px;
+    padding-top : 20px;
+    vertical-align: middle;
+    text-decoration : none;
+}
+
+.pagenum .none {
+	
+	font-size: 20px;
+	color: silver;
+}
+
+.pagenum b {
+    display: inline-block;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #fff;
+    line-height: 16px;
+    min-width: 14px;
+    margin: 0 10px;
+    color: #00BFFF;
+    font-size: 20px;
+    padding-top : 20px;
+    vertical-align: middle;
+    text-decoration : underline;
+}
+
+
+/*allgenre 끝*/
+
+/*--------------------------------------*/
+/*search*/
+.mainmusic { 
+   background-color: #EEEEEE;
+   padding : 10px 10px 10px 10px;
+   float : left;
+   font-size : 20px;
+   max-width : 95%;
+   width : 95%;
+   margin-bottom : 20px;
+}
+
+.albumtitle {
+	color: #3A3635;
+	font-size : 14px;
+}
+
+.singer {
+	color: #757271;
+	font-size : 12px;
+}
+
+/*search 끝*/
+
+/*--------------------------------------*/
+/*musicdetail*/
+.musicpage {
+	padding-left:70px;
+}
+
+.musicpage .detail{
+	margin:left;
+	padding-top:30px;
+	padding-bottom:17px;
+	border-bottom:1px solid #BDBDBD;
+}
+
+.musicpage .meta .list dt{
+	float:left;
+	color : #717171;
+	font-family : sans-serif;
+}
+.musicpage .meta:after{
+	clear:both;
+}
+
+.musicpage .meta .list dd{
+	font-family : sans-serif;
+	font-weight : bold;
+}
+
+.count .meta .list dt{
+	float:left;
+}
+.count .meta .list dt:after{
+	clear:both;
+}
+
+.musicpage .comment .textarea textarea{
+	float:left;
+	font-size:12px;
+	font-family:sans-serif;
+}
+.musicpage .comment .btn btn:after{
+	clear:both;
+	font-family : sans-serif;
+}
+
+.comm {
+	padding-top:10px;
+	
+	width : 800px;
+	float:left;
+}
+
+.commtitle {
+	font-size:14px;
+	font-family:sans-serif;
+}
+
+.content {
+	font-size: 12px;
+	padding-left:10px;
+	font-family : sans-serif;
+	border-bottom:1px solid #e1e1e1;
+	padding-bottom:10px;
+}
+
+.like_btn {
+	border: none;
+	background: none;
+}
+
+.form {
+	display:inline;
+	align: left;
+	vertical-align:top;
+}
+
+
+/*musicdetail 끝*/
+
+/*--------------------------------------*/
+/*modify, modifyview*/
+.tt {
+	border : 1px solid lightgray;
+	width : 60%;
+}
+
+
+.inputbutton {
+	background-color: #00BFFF;
+	color : white;
+	width: 70px;
+	font-size: 14px;
+	margin: 3px;
+	border : 0;
+	outline : 0;
+}
+
+/*modify, modifyview 끝*/
+
+/*--------------------------------------*/
+/*memberpage*/
+
+.mem_page {
+	display : flex;
+	flex-direction : column;
+	width : 350px;
+	border: 1px solid #818181;
+	border-radius: 10px;
+	
+}
+
+.memberbutton {
+	background-color: #00BFFF;
+	border-radius: 7px;
+	color : white;
+	width: 100px;
+	height: 35px;
+	font-size: 15px;
+	margin: 3px;
+	border : 1px solid white;
+	outline : 0;
+}
+/*memberpage 끝*/
+
+/*--------------------------------------*/
+/*pw_recover*/
+.pw_text {
+	margin: auto;
+}
+
+.pw_table {
+	border : 2px solid #e1e1e1;
+	border-radius : 10px;
+	margin: auto;
+	height : 100px;
+}
+
+.pw_button {
+	color: white;
+	background-color : #00BFFF;
+	border: none;
+	border-radius: 5px;
+	margin: auto;
+	font-size : 15px;
+}
+/*pw_recover 끝*/
+
+/*--------------------------------------*/
+/*loginpage, recover*/
+.pwrecover:hover {
+   color: #00cd3c;
+   text-decoration : underline;
+   cursor:pointer;
+}
+
+.wrong {
+	color : red;
+}
+
+.inputlogin {
+	border: 1px solid #e1e1e1;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: auto;
+	width : 25%;
+}
+
+.inputlogin input {
+	padding: 0 15px;
+	width: 100%;
+	height: 50px;
+	border: none;
+	box-sizing: border-box;
+}
+
+.inputlogin input#memid {
+	border-bottom: 1px solid #e1e1e1;
+}
+
+.loginbtn {
+	color: white;
+	background-color : #00BFFF;
+	border: none;
+	border-radius: 5px;
+	margin: auto;
+	width: 25%;
+	height: 40px;
+	font-size: 20px;
+}
+
+.recoverbtn {
+	margin: auto;
+}
+/*loginpage, recover 끝*/
+
+/*--------------------------------------*/
+/*storage*/
+
+.main_storage {
+	
+	width:90%;
+	height:80%;
+}
+
+.select_bar {
+	border-bottom:1px solid #e1e1e1;
+	height:50px;
+	text-align:left;
+	vertical-align: bottom;
+	font-size:20px;
+	font-family:sans-serif;
+}
+
+.content_box {
+	height:600px;
+	
+}
+
+.stor_nomem {
+	margin:center;
+	vertical-align:middle;
+	height:600px;
+}
+
+.s_btn {
+	
+}
+
+.s_btn_select {
+	font-size:20px;
+	font-family:sans-serif;
+	color:#00BFFF;
+}
+
+.member {
+	background-color: white;
+	width : 80%;
+	height : 80%;
+
+}
+/*storage 끝 */
+
+/*--------------------------------------*/
+/*register*/
+.register_table {
+   border: white;
+   border-radius: 5px;
+   background-color: rgb(255, 255, 255);
+   font-size: 12px;
+   margin : auto;
+   border-spacing : 0 20px;
+   
+}
+
+.register_table input {
+   margin : 5px;   
+}
+
+.register_input {
+   background-color: #FFFFFF;
+   border: 1px solid white;   
+}
+
+.register_input[type=text], .register_input[type=password] {
+   width: 150px;
+}
+   
+.inputbutton1 {
+   background-color: #00BFFF;
+   color : white;
+   width: 70px;
+   font-size: 14px;
+   margin: 3px;
+   border : 0;
+   outline : 0;
+}
+
+.inputbutton2 {
+   background-color: #00BFFF;
+   color : white;
+   width: 150px;
+   font-size: 20px;
+   margin: 3px;
+   border : 0;
+   outline : 0;
+}
+
+.reigster_button {
+   display: inline-block;
+   outline: none;
+   cursor: pointer;
+   text-align: center;
+   text-decoration: none;
+   font: 14px/100% Arial, Helvetica, sans-serif;
+   color: #00BFFF;
+   background-color: #00BFFF;
+   border-color: #FFFFFF;
+   padding: .5em .5em .55em;
+   width: 70px;
+}
+
+.register_button:hover {
+   text-decoration: none;
+}
+
+.register_button:active {
+   position: relative;
+   top: 1px;
+}
+.tt {
+   border : 1px solid lightgray;
+   width : 60%;
+}
+
+
+/*register 끝 */
+
+
+.chart_title {
+	height : 40px;
+	padding-left : 10px;
+	font-size : 20px;
+	font-family: sans-serif;
+	font-weight: bold;
+	border-bottom : 2px solid #818181;
+}
+
+.center {
+	text-align: center;	
+}
+
+
+
+h1,h2,h3,h4 {
+	color: #717171;
+	text-align : center;
+}
+
+
+.info {
+	border: 1px solid #e1e1e1;
+	border-radius: 10px;
+	margin: auto;
+	width: 70%;
+	height: 500px;
+}
+
+
+
+

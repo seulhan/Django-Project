@@ -1,0 +1,167 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %} 메인화면 {% endblock %}</title>
+</head>
+<!-- 각 내용에 block content 추가 필요 -->
+{% block content %}
+<form method="post" action="storage">
+	<div class=main_storage>
+		<div class="select_bar">
+			
+			{% if not select %}
+				<a class="s_btn_select" id="likelist" style="cursor:pointer" onclick="storage_click_like(); location = 'storage'"><b>좋아요</b></a>
+			{% endif %}
+			{% if select %}
+				<a class="s_btn" id="likelist" style="cursor:pointer" onclick="storage_click_like(); location = 'storage'"><b>좋아요</b></a>
+			{% endif %}
+			&emsp;&emsp;
+			{% if select == "playlist" %}
+				<a class="s_btn_select" id="playlist" style="cursor:pointer" onclick="storage_click_playlist(); location = 'storage?select=playlist'"><b>재생목록</b></a>
+			{% endif %}
+			{% if select != "playlist" %}
+				<a class="s_btn" id="playlist" style="cursor:pointer" onclick="storage_click_playlist(); location = 'storage?select=playlist'"><b>재생목록</b></a>
+			{% endif %}
+			&emsp;&emsp;
+			{% if select == "commentlist" %}
+				<a class="s_btn_select" id="commentlist" style="cursor:pointer" onclick="storage_click_comment(); location = 'storage?select=commentlist'"><b>내 댓글</b></a>
+			{% endif %}
+			{% if select != "commentlist" %}
+				<a class="s_btn" id="commentlist" style="cursor:pointer" onclick="storage_click_comment(); location = 'storage?select=commentlist'"><b>내 댓글</b></a>
+			{% endif %}
+	</div>
+</form>
+	{% if memid %}
+		{% if not select %}
+			<div class="content_box">
+				<div class="member">
+				<br>
+				<table style="border-collapse:collapse; width:1100px;">
+					<tr style="height:60px">
+	    			<td style="width:150px; font-size:16px; font-family:sans-sesif;"><b>
+	    			노래제목</b></td>
+	    			<td style="width:500px; font-size:16px; font-family:sans-sesif;"><b>
+	    			아티스트명</b></td>
+	    			<td style="width:10px; font-size:16px; font-family:sans-sesif;"><b>
+	    			장르</b></td>
+	    			</tr>
+	    			{% if result == 0 %}
+	    				
+	    					{% for post in posts %}
+	    						{% if post.num in like.num %}
+	    						<tr style="height:60px; border-bottom:1px solid #e1e1e1;">
+				    				<td style="width:100px;">{{post.title}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				    				<td style="width:150px;">{{post.singer}}&emsp;&emsp;</td>
+				    				<td style="width:150px;">{{post.genre}}&emsp;&emsp;</td>
+				    				<td style="width:100px;" >
+				    				<a href="Like_del?num={{post.num}}&next={{request.get_full_path}}" 
+				    				onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+				    				</td>
+			    				</tr>
+	    						{% endif %}
+	    					{% endfor %}
+	    				
+	    			{% endif %}
+	    			{% if result == 1 %}
+	    				<br>
+	    				아직 좋아요를 누른 곡이 없습니다.
+	    			{% endif %}
+				</table>
+				</div>
+			</div>
+		{% endif %}
+		{% if select == "playlist" %}
+			<div class="content_box">
+				<div class="member">
+				<br>
+				<table style="border-collapse:collapse; width:1100px;">
+					<tr style="height:60px">
+	    			<td style="width:150px; font-size:16px; font-family:sans-sesif;"><b>
+	    			노래제목</b></td>
+	    			<td style="width:500px; font-size:16px; font-family:sans-sesif;"><b>
+	    			아티스트명</b></td>
+	    			<td style="width:10px; font-size:16px; font-family:sans-sesif;"><b>
+	    			장르</b></td>
+	    			</tr>
+	    			{% if result == 0 %}
+	    				
+	    					{% for post in posts %}
+	    						{% if post.num in playlist.num %}
+	    						<tr style="height:60px; border-bottom:1px solid #e1e1e1;">
+				    				<td style="width:100px;">{{post.title}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				    				<td style="width:150px;">{{post.singer}}&emsp;&emsp;</td>
+				    				<td style="width:150px;">{{post.genre}}&emsp;&emsp;</td>
+				    				<td style="width:100px;" >
+				    				<a href="playlist_del?num={{post.num}}&next={{request.get_full_path}}" 
+				    				onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+				    				</td>
+			    				</tr>
+	    						{% endif %}
+	    					{% endfor %}
+	    				
+	    			{% endif %}
+	    			{% if result == 1 %}
+	    				<br>
+	    				아직 좋아요를 누른 곡이 없습니다.
+	    			{% endif %}
+				</table>
+				</div>
+			</div>
+		{% endif %}
+		{% if select == "commentlist" %}
+		  <div class="content_box">
+			<div class="member">
+			<br>
+	    	<table style="border-collapse:collapse; width:1100px;">
+	    		<tr style="height:60px">
+	    			<td style="width:150px; font-size:16px; font-family:sans-sesif;"><b>
+	    			노래제목</b></td>
+	    			<td style="width:90px; font-size:16px; font-family:sans-sesif;"><b>
+	    			닉네임&emsp;&emsp;</b></td>
+	    			<td style="width:450px; font-size:16px; font-family:sans-sesif;"><b>
+	    			댓글 내용</b></td>
+	    			<td style="width:50px; font-size:16px; font-family:sans-sesif;"><b>
+	    			작성 날짜</b></td>
+	    		</tr>
+	    		{% if result == 0 %}						
+		    		{% for com in comment %}
+		    			{% for post in posts %}	
+		    				{% if post.num == com.num %}
+		    				<tr style="height:60px; border-bottom:1px solid #e1e1e1;">
+			    				<td style="width:100px;">{{post.title}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			    				<td>{{com.user_id.name}}&nbsp;&nbsp;&nbsp;</td><td>{{com.content}}&nbsp;&nbsp;&nbsp;</td>
+			    				<td style="width:150px;">{{com.regdate|date:"Y.m.d H:i"}}&emsp;&emsp;</td>
+			    				<td style="width:50px;"></td>
+			    				<td style="width:100px;" >
+			    				<a href="comment_del?num={{post.num}}&regdate={{comment.regdate|date:'Y-m-d H:i:s.u'}}&next={{request.get_full_path}}" 
+			    				onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+			    				</td>
+			    			</tr>
+		    				{% endif %}
+		    			{% endfor %}
+		    		{% endfor %}
+		    	{% endif %}
+		    	{% if result == 1 %}		
+		    		<br>				
+		    		아직 댓글이 없습니다.
+		    	{% endif %}
+	    	</table>
+	    	</div>
+	    	{% endif %}
+	    	{% endif %}	
+	    	{% if not memid %}
+	    		<center>
+	    		<table class="stor_nomem">
+	    			<tr>
+	    			<th style="font-size:20px">로그인 후 이용하실 수 있습니다.</th>
+	    			</tr>
+	    		</table>
+	    		</center>
+    	{% endif %}
+	</div>
+</div> 
+{% endblock %}
+</html>

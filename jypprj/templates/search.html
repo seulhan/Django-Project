@@ -1,0 +1,84 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+
+
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="{% static 'jypstyle.css'%}">
+		<title>{% block title %}
+				검색 
+				{% if sword %}
+					'{{sword}}'
+				{% endif %} 
+				{% if not sword %} 
+				{% endif %}
+				{% endblock %}
+		</title>
+	</head>
+	<body>
+	{% block content %}
+			<section class = "mainmusic">
+			{% if msg %}
+
+				<!-- 글이 없는 경우 -->
+				<figure class = "album">
+						<b class = "albumtitle">{{msg}}</b>
+				</figure>
+			{% endif %}
+			{% if not msg %}
+				<!-- 글이 있는 경우 -->
+				{% for post in posts %}
+					<figure class = "album">
+						<a href="musicdetail?num={{post.num}}">
+						
+							<br>
+							<b class = "albumtitle" onclick="location='musicdetail?num={{post.num}}'">{{post.title}}</b>
+							<br>
+							<span class = "singer" onclick="location='musicdetail?num={{post.num}}'">{{post.singer}}</span>
+					</figure>
+															
+							
+				{% endfor %}
+			{% endif %}			
+		</section>
+		<br>
+		<!--{% if sword %}
+			{% csrf_token %}
+			<form method="get"action="search">
+				<input type="hidden" name="pagenum" value="{{pagenum}}">
+				<select name="sselect">
+						<option value="제목">제목</option>
+						<option value="내용">내용</option>
+						<option value="제목+내용">제목+내용</option>
+				</select>
+				<input type="text" name="sword" value="">{{sword}}
+				<input type="submit" name="sbt" value="검색">
+			</form>
+			
+			<br>
+			<br>
+			 {% if startpage > pageblock %}
+				<a href="search?pagenum=1&sword={{sword}}sselect={{sselect}}">[◀◀]</a>		
+				<a href="search?pagenum={{startpage}}&sword={{sword}}&sselect={{sselect}}">[◀]</a>		
+			{% endif %}
+			
+			{% for page in pages %}
+				{% if page == pagenum %}
+					<b>[{{page}}]</b>
+				{% endif %}			
+				{% if page != pagenum %}
+					<a href="search?pagenum={{page}}&sword={{sword}}&sselect={{sselect}}">[{{page}}]</a>
+				{% endif %}
+			{% endfor %}
+			
+			{% if endpage < pagecount %}
+				<a href="search?pagenum={{startpage}}&sword={{sword}}&sselect={{sselect}}">[▶]</a>	
+				<a href="search?pagenum={{pagecount}}&sword={{sword}}&sselect={{sselect}}">[▶▶]</a>		
+			{% endif %} -->
+		{% endif%}
+		
+	{% endblock %}
+	</body>
+</html>

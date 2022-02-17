@@ -1,0 +1,176 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %} 랭킹차트 {% endblock %}</title>
+</head>
+{% block content %}
+<body>
+	<center>
+	<section class = "musicchart">
+		<span class = "title">{{member.name}}님을 위한 음악 추천&nbsp;&nbsp;&nbsp;</span>
+		<br>
+		<br>
+		<span class = "r_title"> 자주 듣는 장르 : </span>
+		<form method = "post" action = "allgenre">
+
+		<br><br>
+		{% if genre == "ballad" %}
+			<input class = "btn_select" type = "button" id = "genrelist1" value = "발라드" style = "cursor:pointer" onclick = "genre_click_list1(); location = 'recommend?genre=ballad'">
+		{% endif %}
+		{% if genre != "ballad" %}
+			<input class = "btn" type = "button" id = "genrelist1" value = "발라드" style = "cursor:pointer" onclick = "genre_click_list1(); location = 'recommend?genre=ballad'">
+		{% endif %}
+		
+		{% if genre == "dance" %}
+			<input class = "btn_select" type = "button" id = "genrelist2" value = "댄스" style = "cursor:pointer" onclick = "genre_click_list2(); location = 'recommend?genre=dance'">
+		{% endif %}
+		{% if genre != "dance" %}
+			<input class = "btn" type = "button" id = "genrelist2" value = "댄스" style = "cursor:pointer" onclick = "genre_click_list2(); location = 'recommend?genre=dance'">
+		{% endif %}
+		
+		{% if genre == "rap" %}
+			<input class = "btn_select" type = "button" id = "genrelist3" value = "랩/힙합" style = "cursor:pointer" onclick = "genre_click_list3(); location = 'recommend?genre=rap'">
+		{% endif %}
+		{% if genre != "rap" %}
+			<input class = "btn" type = "button" id = "genrelist3" value = "랩/힙합" style = "cursor:pointer" onclick = "genre_click_list3(); location = 'recommend?genre=rap'">
+		{% endif %}
+		
+		{% if genre == "rnb" %}
+			<input class = "btn_select" type = "button" id = "genrelist4" value = "R&B/Soul" style = "cursor:pointer" onclick = "genre_click_list4(); location = 'recommend?genre=rnb'">
+		{% endif %}
+		{% if genre != "rnb" %}
+			<input class = "btn" type = "button" id = "genrelist4" value = "R&B/Soul" style = "cursor:pointer" onclick = "genre_click_list4(); location = 'recommend?genre=rnb'">
+		{% endif %}
+		<br>
+		</form>
+		<table id = "musicchart_list" cellspacing = 0>
+				<br>
+				<thead>
+					<tr>
+						<th scope="col" class="chart_ranking">
+						   <div class="text">순위</div>
+						   <div class="clear"></div>
+						</th>
+						<th  scope="col" class="chart_musicname">
+						   <div class="text">곡명</div>
+						   <div class="clear"></div>
+						</th>
+						<th scope="col" class="chart_artist">
+						   <div class="text">아티스트</div>
+						   <div class="clear"></div>
+						</th>
+						<th></th>
+						<th scope="col" class="chart_artist">
+						   <div class="text">담기</div>
+						   <div class="clear"></div>
+						</th>
+						<th scope="col" class="chart_artist">
+						   <div class="text">좋아요</div>
+						   <div class="clear"></div>
+						</th>
+					</tr>
+				</thead>
+				<tbody class = "rank">
+				{% for post in posts %}
+					<tr style = "cursor:pointer" onclick="location='musicdetail?num={{post.num}}'">
+						<td class="tbody_ranking">{{forloop.counter}}</td>
+						<td class="tbody_musicname">{{post.title}}</td>
+						<td class="tbody_artist">{{post.singer}}</td>
+						<td class="tbody_musicname">{{post.album_name}}</td>
+						<td>
+						{% if memid %}
+							
+								{% if post.num == playlist.num %}
+								<form method="get" action="playlist_del" class="form">
+         						<input type="hidden" name="num" value="{{post.num}}">
+         						<input type="hidden" name="next" value="{{request.get_full_path}}">
+         						<button class="like_btn">
+         						<img name="playlist_del" onclick="javascript:playlistbtn2();" src="{% static 'playlist_del.png' %}" width=60 height=60>
+         						</button>
+         						</form>
+								{% endif %}
+								{% if post.num != playlist.num %}
+								<form method="get" action="playlist_set" class="form">
+         						<input type="hidden" name="num" value="{{post.num}}">
+         						<input type="hidden" name="next" value="{{request.get_full_path}}">
+         						<button class="like_btn">
+         						<img name="playlist" onclick="javascript:playlistbtn();" src="{% static 'playlist_press.png' %}" width=60 height=60>
+         						</button>
+         						</form>
+								{% endif %}
+					
+						{% endif %}
+						{% if not memid %} -- {% endif %}
+						</td>
+						<td> 
+						{% if memid %}
+								{% if post.num in like %}
+								<form method="get" action="Like_del" class="form">
+                  				<input type="hidden" name="num" value="{{post.num}}">
+                  				<input type="hidden" name="next" value="{{request.get_full_path}}">
+                  				<button class="like_btn">
+                   				<img style="padding-top:11px;" onclick="javascript:likebtn2();" src = "{% static 'full_like.png'%}" width = 35 height = 35>
+                   				</button>
+              					</form>
+								{% endif %}
+								{% if post.num not in like %}
+								<form method="get" action="Like_set" class="form">
+               					<input type="hidden" name="num" value="{{post.num}}">
+               					<input type="hidden" name="next" value="{{request.get_full_path}}">
+               					<button class="like_btn">
+               					<img style="padding-top:11px;" onclick="javascript:likebtn();" src = "{% static 'like.png'%}" width = 35 height = 35>
+               					</button>
+           						</form>
+								{% endif %}
+						{% endif %}
+						{% if not memid %} -- {% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class = "center">
+         <table class = "paging">
+            <span class = "pagenum">
+               {% load mathfilters %}
+               {% if startpage > pageblock %}
+                  <a href="allgenre?page={{1}}"> << </a>
+                  <a href="allgenre?page={{startpage|sub:pageblock}}"> < </a>      
+               {% endif %}
+               
+               {% if startpage <= pageblock %}
+                  <a class = "none" style="cursor:default" > << </a>
+                  <a class = "none"  style = "cursor:default" > < </a>      
+               {% endif %}
+               
+               {% for writepage in pages %}
+                  {% if writepage == page %}
+                     <b>{{writepage}}</b>
+                  {% endif %}
+                  {% if writepage != page %}
+                     <a href = "allgenre?page={{writepage}}">{{writepage}}</a>
+                  {% endif %}
+               {% endfor %}
+               
+               {% if endpage < pagecount %}
+                  <a href = "allgenre?page={{startpage|add:pageblock}}">></a>
+                  <a href="allgenre?page={{pagecount}}">>></a>
+               {% endif %}
+               {% if endpage >= pagecount %}
+                  <a class = "none" style = "cursor:default" >></a>
+                  <a class = "none" style = "cursor:default" >>></a>
+               {% endif %}
+            </span>
+         </table>
+         </div>
+         
+	</section>
+
+
+</center>
+</body>
+{% endblock %}
+</html>

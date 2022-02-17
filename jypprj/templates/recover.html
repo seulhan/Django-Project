@@ -1,0 +1,57 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JYP PROJECT</title>
+		<link rel = "stylesheet" type = "text/css" href="{% static 'style_jyp.css'%}">
+		<script src="{% static 'jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'jypprj.js' %}"></script>
+	</head>
+	<body>
+	{%block content %}
+	<br><br>
+	<h2>
+	<img src="{% static 'passwd1.png'%}" style="float:center;width:40px;height:40px" >
+	비밀번호 찾기
+	</h2>
+	<!--  
+		<table border="1">
+			<tr>
+				<th colspan="2">
+					비밀번호 찾기
+				</th>
+			</tr>
+			<tr>
+				<th> 아이디 </th>
+				<td> <input type="text" name="id"> </td>
+			</tr>
+			<tr>
+				<th> 생년월일 </th>
+				<td> <input type="text" name="birthday" placeholder="6자리"> </td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					<input type="button" value="비밀번호 찾기" onclick="pw_recover()"> 
+				</th>
+			</tr>
+		</table>
+		-->
+		<div>
+					<h4>
+					본인확인을 위해 아이디와 생년월일을 입력하세요.
+					</h4>
+				<div class="inputlogin">
+					<input id="memid" type="text" name="id" placeholder="아이디" autofocus>
+					<input type="text" name="birthday" placeholder="생년월일 6자리">
+				</div>
+				<br>
+				<center>
+					<input class="loginbtn" type="button" value="비밀번호 찾기" onclick="pw_recover()"> 
+				</center>
+			</div>
+		
+		{% endblock %}
+	</body>
+</html>

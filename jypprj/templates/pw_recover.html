@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JYP PROJECT</title>
+		<link rel = "stylesheet" type = "text/css" href="{% static 'jypstyle.css'%}">
+		<script src="{% static 'jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'script_jyp.js' %}"></script>
+	</head>
+	<body>
+		<h3> 비밀번호 찾기 </h3>
+		{% if result == 0 %}
+		<table class="pw_table">
+			<tr>
+				<th class="pw_text" > 아이디 {{id}}의 비밀번호는 <span>'{{passwd}}'</span> 입니다.</th>
+				<br>
+			</tr>
+			<tr>
+				<th>
+					<input class="pw_button" type="button" value="로그인 하기" onclick="relogin('{{id}}')">&nbsp;&nbsp;
+					<input class="pw_button" type="button" value="닫기" onclick="close_pw()">
+				</th>
+			</tr>
+		</table>
+		{% endif %}
+		{% if result == 1 %}
+		<form action="pw_recover">
+				<table class="pw_table">
+					<tr>
+						<th class="wrong" colspan="2"> {{msg}} </th>
+					</tr>
+					<tr>
+						<th> 아이디 </th>
+						<td> <input type="text" name="id"> </td>
+					</tr>
+					<tr>
+						<th> 생년월일 </th>
+						<td> <input type="text" name="birthday" placeholder="6자리"> </td>
+					</tr>
+					<tr>
+						<th colspan="2">
+							<input class="pw_button" type="submit" value="찾기">&nbsp;&nbsp;
+							<input class="pw_button" type="button" value="닫기" onclick="self.close()">
+						</th>
+					</tr>
+				</table>
+			</form>
+		{% endif %}
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

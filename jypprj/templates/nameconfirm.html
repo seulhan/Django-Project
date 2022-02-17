@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title> 닉네임 중복확인 </title>
+		<link rel="stylesheet" type="text/css" href="{% static 'jypstyle.css'%}">
+		<script src="{% static 'jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'script_jyp.js'%}"></script>
+	</head>
+	<body>
+		<h2> 닉네임 중복확인 </h2>
+		{% if result == 0 %}
+			<table border="1">
+				<tr>
+					<th style="width:300px;"> <span>{{name}}</span>는 사용할 수 있습니다. </th>
+				</tr>
+				<tr>
+					<th>
+					확인을 누르세요. <input class="inputbutton1" type="button" value="확인"
+						onclick="set_name('{{name}}')">
+						
+				        
+					</th>	
+				</tr>
+			</table>			
+		{% endif %}
+		{% if result == 1 %}
+			<form action="nameconfirm">
+				<table border="1">
+					<tr>
+						<th colspan="2"> <span>{{name}}</span>은/는 사용할 수 없습니다. </th>
+					</tr>
+					<tr>
+						<th> 닉네임 </th>
+						<td> <input type="text" name="name" autofocus> </td>
+					</tr>
+					<tr>
+						<th colspan="2">
+							<input class="inputbutton1" type="submit" value="확인">
+							<input class="inputbutton1" type="button" value="취소" onclick="self.close()">
+						</th>
+					</tr>
+				</table>
+		{% endif %}
+	
+	</body>
+</html>
+
+
+
+
+
+
+
+

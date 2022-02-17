@@ -1,0 +1,88 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}회원정보수정{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'jypstyle.css'%}">
+		<script src="{% static 'jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'script_jyp.js'%}"></script>
+	</head>
+{% block content %}
+	<body>
+	<center>
+	<br>
+	<br>
+		{% csrf_token %}
+		<form name="modifyform" method="post" action="modifypro" onsubmit="return registercheck()">
+			<div class="tt">
+			<h2> 회원정보 수정 </h2>
+			<table>
+				<tr>
+					<th> 아이디 </th>
+					<td> &nbsp;{{ dto.id }} </td>
+				</tr>
+				<tr>
+					<th> 비밀번호 </th>
+					<td> 
+						<input type="password" name="passwd" autofocus
+							value="{{dto.passwd}}">
+					</td>
+				</tr>
+				<tr>
+					<th> 비밀번호 확인 </th>
+					<td> 
+						<input type="password" name="passwd1" value="{{dto.passwd}}"> 
+					</td>
+				</tr>
+				<tr>
+					<th> 닉네임 </th>
+					<td> 
+					<input type="text" name="name" required> 
+					<input class="inputbutton" type="button" name="namechk" value="중복확인"
+							onclick="nameconfirm1()">
+					</td>					
+				</tr>
+				<tr>
+					<th> 생년월일 </th>
+					<td>  {{dto.birthday}} </td>
+				</tr>
+				<tr>
+					<th> 성별 </th>
+					<td>
+						<select name="gender" required>
+							<option value=""> 성별 </option>
+							<option value="여성"> 여성 </option>
+    						<option value="남성"> 남성 </option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">
+						<br>
+						<br>
+						<input class="inputbutton" type="submit" value="수정하기">
+						<input class="inputbutton" type="button" value="취  소"
+							onclick="location='mainpage'">
+					</th>
+				</tr>
+			</table>
+			</div>		
+		</form>
+	</center>
+	</body>
+{% endblock %}
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

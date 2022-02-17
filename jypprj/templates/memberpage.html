@@ -1,0 +1,37 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}로그인{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'jypstyle.css'%}">
+		<script src="{% static 'jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'jypprj.js' %}"></script>
+	</head>
+{% block content %}
+	<body>
+	<br>
+	<center><img src = "{% static 'profile.png'%}" width = 100 height = 100> <br>
+	<h3><b> {{member.name}}</b>님, 환영합니다.</h3>
+	<br>
+    	<table style="border:1px solid #e1e1e1; border-radius:10px; width:400px;">
+    	<tr>
+    		<th style="border-right:1px solid #e1e1e1;border-bottom:1px solid #e1e1e1;"><h3 style="text-align:left;">&emsp;회원정보 수정</h3></th>
+    	 	<td style="border-bottom:1px solid #e1e1e1;">&emsp;&emsp;<input class="memberbutton" type="button" value="수정하기" onclick="location='modify'"></td>
+    	 </tr>
+    	 <tr>
+    		<th style="border-right:1px solid #e1e1e1;"><h3 style="text-align:left;">&emsp;회원탈퇴</h3></th>
+    	 	<td>&emsp;&emsp;<input class="memberbutton" type="button" value="탈퇴하기" onclick="location='deletepage'"> </td>
+    	</tr>
+    	</table>
+    	</center>
+  </body>
+	{% endblock %}
+</html>
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	
+	<link rel = "stylesheet" type = "text/css" href="{% static 'jypstyle.css'%}">
+	
+	<script src = "{% static 'jquery-3.6.0.js'%}"> </script>
+	<script src="{% static 'script_jyp.js' %}"></script>
+
+</head>
+<title> {% block title %} {% endblock %} </title>
+<body>
+	<div class = "topbar">
+		<br>
+		<form method = "get" action = "search">
+			<div style="vertical-align:top; text-align:right; padding-right:10px;">
+					{% if not memid %}
+					<a href = "/jypprj/registerpage" style="color:#8c8c8c">회원가입</a>
+					{% endif %}
+					{% if memid %}
+					<a href = "/jypprj/memberpage" style="color:#8c8c8c">마이페이지</a>
+					{% endif %}
+					&nbsp;&nbsp;
+					{% if not memid %}
+					<a href = "/jypprj/loginpage?next={{request.get_full_path}}" style="color:#8c8c8c">로그인</a>
+					{% endif %}
+		
+					{% if memid %}
+					<a onclick = "location='logout?next={{request.get_full_path}}'" style = "cursor:pointer; color:#8c8c8c">로그아웃</a>
+					{% endif %}
+			</div>
+			
+				<table style="padding-left:30px"> 
+					<td> <a href = "mainpage"><img src = "{% static 'jypc.png'%}" width = 60 height = 60></a> </td>
+					<td style="padding-left:20px">
+					<a class="toptxt" href="/jypprj/allgenre">전체음악</a>
+					&emsp;&emsp;
+					<a class="toptxt" href=/jypprj/recommend>추천음악</a>
+					&emsp;&emsp;
+					<a class="toptxt" href="/jypprj/storage">보관함&emsp;&emsp;&emsp;&emsp;</a>
+					</td>
+					
+					<td> <input class = "input_search" type = "textbox" name = "sword" placeholder = "    곡명이나 가수명을 입력해주세요." 
+							value="{{sword}}" width = 170> </td>
+					
+					</table>	
+		</form>
+	</div>
+	
+	<div id = "content" class = "main">
+		{% block content %}
+		{% endblock %}	
+		
+	</div>
+</body>
+</html>

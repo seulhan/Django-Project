@@ -1,0 +1,80 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+		<title>회원가입</title>
+		<script src="{% static 'jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'script_jyp.js'%}"></script>
+		$(document).ready(function(){
+			function searchajax();
+		});
+</head>
+{% block content %}
+	<body>
+	<center>
+	<br>
+	<br>
+		{% csrf_token %}
+			
+		<form name="registerform" method="post" action="registerpro" onsubmit="return registercheck()" >
+			<input type="hidden" id="id_check" name="id_check" value=0 >
+			<input type="hidden" id="n_check" name="n_check" value=0 >
+			<div class="tt">
+			<h2>회원가입</h2>
+			<table class="register_table" border="1">
+				<tr>
+					<th> 아이디 </th>
+					<td> 
+					<input class="register_input" type="text" name="id" autofocus required onkeyup="idverify()" maxlength="20"> 
+					<div id="id_result"></div>
+					<!-- <input class="inputbutton1" type="button" name="idchk" value="중복확인"
+							onclick="idconfirm()"> -->
+					</td>
+				</tr>
+				<tr>
+					<th> 비밀번호 </th>
+					<td> <input class="register_input" maxlength="10" type="password" name="passwd" placeholder="10자 이내" required> </td>
+				</tr>
+				<tr>
+					<th> 비밀번호 확인 </th>
+					<td> <input class="register_input" maxlength="10" type="password" name="passwd1" required> </td>
+				</tr>
+				<tr>
+					<th> 닉네임 </th>
+					<td> 
+					<input class="register_input" type="text" name="name" required onkeyup="nickverify()" maxlength="20"> 
+					<div id="nick_result"></div>
+					<!-- <input class="inputbutton1" type="button" name="namechk" value="중복확인" 
+							onclick="nameconfirm()"> -->
+					</td>					
+				</tr>
+				<tr>
+					<th> 생년월일 </th>
+					<td> <input class="register_input" maxlength="6" type="text" name="birthday" placeholder="6자리(000000)" required> </td>	
+				</tr>
+				<tr>
+					<th> 성별 </th>
+					<td>
+						<select class="register_input" name="gender" required>
+							<option value=""> 성별 </option>
+							<option value="여성"> 여성 </option>
+    						<option value="남성"> 남성 </option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2"> <br>
+						<input class="inputbutton2" type="submit" value="회원가입">
+						<input class="inputbutton2" type="button" value="취  소"
+							onclick="location='mainpage'">
+					</th>
+				</tr>			
+			</table>
+			</div>	
+		</form>
+	</center>	
+	</body>
+{% endblock %}
+</html>

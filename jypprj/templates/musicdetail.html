@@ -1,0 +1,136 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+{% load embed_video_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+    	{% block title %}
+			음악정보
+			{% if post %}
+				'{{post.title}}'
+			{% endif %} 
+			{% if not sword %} 
+			{% endif %}
+		{% endblock %}
+	</title>
+</head>
+{% block content %}
+<body>
+	<section class="musicpage">
+		<div style="font-size:22px;padding-top:25px;padding-bottom:25px;border-bottom:1px solid #BDBDBD;">{{post.title}}</div>
+		{% if memid %}
+           {% if post.num not in like.num %}
+           <form method="get" action="Like_set" class="form">
+               <input type="hidden" name="num" value="{{post.num}}">
+               <input type="hidden" name="next" value="{{request.get_full_path}}">
+               <button class="like_btn">
+               <img style="padding-top:11px;" onclick="javascript:likebtn();" src = "{% static 'like.png'%}" width = 35 height = 35>
+               </button>
+           </form>
+           {% endif %}
+           {% if post.num in like.num %}
+              {% csrf_token %}
+              <form method="get" action="Like_del" class="form">
+                  <input type="hidden" name="num" value="{{post.num}}">
+                  <input type="hidden" name="next" value="{{request.get_full_path}}">
+                   <button class="like_btn">
+                   <img style="padding-top:11px;" onclick="javascript:likebtn2();" src = "{% static 'full_like.png'%}" width = 35 height = 35>
+                   </button>
+              </form>
+        	{% endif %}
+         	{% if post.num not in playlist.num %}
+         		<form method="get" action="playlist_set" class="form">
+         			<input type="hidden" name="num" value="{{post.num}}">
+         			<input type="hidden" name="next" value="{{request.get_full_path}}">
+         			<button class="like_btn">
+         			<img name="playlist" onclick="javascript:playlistbtn();" src="{% static 'playlist_press.png' %}" width=60 height=60>
+         			</button>
+         		</form>
+         	{% endif %}
+         	{% if post.num in playlist.num %}
+         		{% csrf_token %}
+         		<form method="get" action="playlist_del" class="form">
+         			<input type="hidden" name="num" value="{{post.num}}">
+         			<input type="hidden" name="next" value="{{request.get_full_path}}">
+         			<button class="like_btn">
+         			<img name="playlist_del" onclick="javascript:playlistbtn2();" src="{% static 'playlist_del.png' %}" width=60 height=60>
+         			</button>
+         		</form>
+         	{% endif %}
+        {% endif %}
+		
+		<div class="detail">
+			<div>
+				<dl class="list">
+					<dt >아티스트 &emsp; {{post.singer}}</dt>
+					<br>
+										
+  
+					<dt >장르 &emsp;&emsp;&emsp; {{post.genre}}</dt>					
+					<br>
+					<dt >조회수 &emsp;&emsp; {{post.readcount}}</dt>
+					
+				</dl>
+			</div>
+		</div>
+		  <br><br>
+	
+		<div style="font-size:18px;margin:left">댓글({{comments.count}})</div>
+		<br>
+		{% if memid %}
+		{% csrf_token %}
+		<form method="post" action="musicdetail" >
+			<input type="hidden" name="num" value="{{post.num}}">
+			<input type="hidden" name="next" value="{{request.get_full_path}}">
+			<div class="comment">
+				<div class="textarea">
+			   		<textarea rows="3" cols="150" style="resize:none;" name="ctxt" value=""placeholder=" 200자 이내로 입력해주세요."></textarea>&nbsp;
+					<button title="글등록" name="cbtn" style="font-family:sans-serif;
+						width:54px;height:54px;background-color:white;">등록</button>
+				</div>
+			</div>
+	  	</form>
+	  	<br>
+	  	{% endif %}
+	  	{% if not memid %}
+	  		<div class="comment">
+				<div class="textarea">
+			   		<textarea rows="3" cols="150" style="resize:none;" name="ctxt" placeholder="로그인 후 작성가능합니다." disabled></textarea>&nbsp;
+					<button title="글등록" name="cbtn" style="width:54px;height:54px;background-color:white;" disabled>등록</button>
+				</div>
+			</div>
+	  	{% endif %}
+	  	
+	  	{% if not comments %}
+	  		<pre style="font-size:14px;margin:center;font-family:sans-serif;">등록된 댓글이 없습니다. 첫 번째 댓글을 남겨보세요.</pre>
+	  	{% endif %}
+	  	{% if comments %}
+	  	<div class="comm">
+	  		{% for comment in comments %}
+	  		
+				{% if post.num != comment.num %}
+					
+				{% endif %}
+				{% if post.num == comment.num %}
+					<div class="commtitle">
+				  			{{comment.user_id.name}} | {{comment.regdate|date:"Y.m.d H:i"}} |
+				  			{% if memid == comment.user_id.id %}
+				  				<a href="comment_del?num={{num}}&regdate={{comment.regdate|date:'Y-m-d H:i:s.u'}}&next={{request.get_full_path}}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</a>
+				  			{% endif %}
+		  				</div>
+		  				<p class="content">{{comment.content}}</p>
+		  			
+		
+	  			{% endif %}
+	  		
+	  		{% endfor %}
+	  	</div>
+	  	{% endif %}
+	 </section>
+	 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,50 @@
+{% extends 'sidebar.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="{% static 'jypstyle.css'%}">
+		<script src="{% static 'jquery-3.6.0.js' %}"></script>
+		<script src="{% static 'script_member.js'%}"></script>
+		<title> JYP PROJECT </title>
+	</head>
+	{% block content %}
+	<body>
+	<center>
+	<br>
+	<br>
+		{% csrf_token %}
+		<form method="post" action="deletepro">
+		<div class="tt">
+		<h2> 회원탈퇴 </h2>
+			<table>
+				<tr>
+					<th colspan="2">
+						{% if msg %}
+							{{ msg }}
+						{% endif %}
+						{% if not msg %}
+						 비밀번호를 다시 입력하세요.
+						{% endif %}
+					</th>
+				</tr>
+				<tr>
+					<th> 비밀번호 </th>
+					<td> <input class="input" type="password" name="passwd" autofocus> </td>
+				</tr>
+				
+				<tr>
+					<th colspan="2">
+						<input class="inputbutton1" type="submit" value="탈퇴" onclick="deleteprock()">
+						<input class="inputbutton1" type="button" value="취소"
+							onclick="location='memberpage'">
+					</th>
+				</tr>
+			</table>
+		</div>
+		</form>
+		</center>
+	</body>
+	{%endblock %}
+</html>
